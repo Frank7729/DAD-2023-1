@@ -1,0 +1,31 @@
+package Tarea;
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Vehiculo> vehiculos = new ArrayList<>();
+        vehiculos.add(new Vehiculo("Toyota", "Corolla", 20000));
+        vehiculos.add(new Vehiculo("Honda", "Civic", 22000));
+        vehiculos.add(new Vehiculo("Mazda", "3M", 18000));
+        vehiculos.add(new Vehiculo("Chevrolet", "Camaro", 40000));
+        vehiculos.add(new Vehiculo("Ford", "Mustang", 38000));
+        vehiculos.add(new Vehiculo("Toyota", "RAV4", 40000));
+
+        long initialTime = System.nanoTime();
+        System.out.println("Lista de vehiculos: ");
+        vehiculos.stream().forEach(System.out::println);
+        long endTime = System.nanoTime();
+        System.out.println("La diferencia de tiempo de programación secuencial: "
+                + (endTime - initialTime) / 1_000_000_000.0 + " segundos");
+
+        System.out.println("============================================================");
+
+        initialTime = System.nanoTime();
+        System.out.println("Lista de vehiculos: ");
+        vehiculos.stream().parallel().forEach(System.out::println);
+        endTime = System.nanoTime();
+        System.out.println("La diferencia de tiempo de programación paralelo: "
+                + (endTime - initialTime) / 1_000_000_000.0 + " segundos");
+    }
+}
